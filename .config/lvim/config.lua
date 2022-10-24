@@ -16,6 +16,7 @@ lvim.colorscheme = "tokyonight-storm"
 lvim.leader = "space"
 
 -- add your own keymapping
+
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<C-l>"] = ":BufferLineCycleNext<CR>"
 lvim.keys.normal_mode["<C-h>"] = ":BufferLineCyclePrev<CR>"
@@ -44,8 +45,9 @@ lvim.keys.term_mode["<C-v>"] = "<C-\\><C-N>pi"
 
 lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs + 1] = { vim.o.shell, "<M-1>", "Horizontal Terminal",
   "horizontal", 10 }
-lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs + 1] = { vim.o.shell, "<M-2>", "Vertical Terminal", "float",
-  60 }
+lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs + 1] = { vim.o.shell, "<M-2>", "Horizontal Terminal 2",
+  "horizontal",
+  20 }
 lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs + 1] = { vim.o.shell, "<M-3>", "Float Terminal", "float", nil }
 
 -- unmap a default keymapping
