@@ -28,6 +28,8 @@ lvim.keys.normal_mode["<C-.>"] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
 lvim.keys.normal_mode["<C-/>"] = "<Plug>(comment_toggle_linewise_current)"
 
 vim.cmd([[
+:setlocal spell spelllang=en_us
+
 " system clipboard
 nmap <c-c> "+y
 vmap <c-c> "+y
