@@ -76,12 +76,18 @@ lvim.builtin.telescope.defaults.mappings = {
 }
 
 -- Use which-key to add extra bindings with the leader-key prefix
-lvim.builtin.which_key.vmappings["s"] = "<esc><cmd>lua require('spectre').open_visual()<CR>"
+lvim.builtin.which_key.vmappings["s"] = { "<esc><cmd>lua require('spectre').open_visual()<CR>", "Search Word" }
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["q"] = { nil }
 lvim.builtin.which_key.mappings["Q"] = { "<cmd>lua require('lvim.utils.functions').smart_quit()<CR>", "Quit" }
 lvim.builtin.which_key.mappings["s"]["S"] = { "<cmd>lua require('spectre').open()<CR>", "Search Workspace" }
 lvim.builtin.which_key.mappings["s"]["s"] = { "<cmd>lua require('spectre').open_file_search()<cr>", "Search File" }
+lvim.builtin.which_key.mappings["S"] = {
+  name = "Session",
+  c = { "<cmd>lua require('persistence').load()<cr>", "Restore last session for current dir" },
+  l = { "<cmd>lua require('persistence').load({ last = true })<cr>", "Restore last session" },
+  Q = { "<cmd>lua require('persistence').stop()<cr>", "Quit without saving session" },
+}
 lvim.builtin.which_key.mappings["t"] = {
   name = "+Trouble",
   r = { "<cmd>Trouble lsp_references<cr>", "References" },
@@ -240,6 +246,26 @@ lvim.plugins = {
     event = "BufRead",
     config = function()
       require("spectre").setup()
+    end,
+  },
+  {
+    "folke/persistence.nvim",
+    event = "BufReadPre", -- this will only start session saving when an actual file was opened
+    module = "persistence",
+    config = function()
+      require("persistence").setup {
+        dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
+        options = { "buffers", "curdir", "tabpages", "winsize" },
+      }
+    end,
+  },
+
+  {
+    "iamcco/markdown-preview.nvim",
+    run = "cd app && npm install",
+    ft = "markdown",
+    config = function()
+      vim.g.mkdp_auto_start = 1
     end,
   },
   { "folke/tokyonight.nvim" },
