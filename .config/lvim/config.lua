@@ -149,10 +149,16 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd" })
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd", "html" })
 lvim.lsp.null_ls.setup = {
   debug = true,
 }
+--Enable (broadcasting) snippet capability for completion
+local capabilities = vim.lsp.protocol.make_client_capabilities()
+capabilities.textDocument.completion.completionItem.snippetSupport = true
+local opts = { filetypes = { "html", "htmldjango" } }
+require('lvim.lsp.manager').setup("html", opts)
+
 
 
 local capabilities = vim.lsp.protocol.make_client_capabilities()
@@ -273,11 +279,11 @@ lvim.autocommands = {
   }
 }
 
--- vim.api.nvim_create_autocmd("BufEnter", {
---   pattern = { "*.json", "*.jsonc" },
---   -- enable wrap mode for json files only
---   command = "setlocal wrap",
--- })
+vim.api.nvim_create_autocmd("BufEnter", {
+  pattern = { "*.html" },
+  -- enable wrap mode for json files only
+  command = "set filetype=html",
+})
 -- vim.api.nvim_create_autocmd("FileType", {
 --   pattern = "zsh",
 --   callback = function()
