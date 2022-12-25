@@ -189,6 +189,7 @@ formatters.setup {
   { command = "black", filetypes = { "python" } },
   { command = "isort", filetypes = { "python" } },
   { command = "djhtml", filetypes = { "htmldjango" } },
+  { command = "prettier", filetypes = { "yaml" } },
 }
 
 -- -- set additional linters
