@@ -27,6 +27,7 @@ lvim.keys.normal_mode["U"] = "<cmd>redo<CR>"
 lvim.keys.normal_mode["<C-.>"] = "<cmd>lua vim.lsp.buf.code_action()<CR>"
 lvim.keys.normal_mode["<C-/>"] = "<Plug>(comment_toggle_linewise_current)"
 
+
 vim.cmd([[
 :setlocal spell spelllang=en_us
 
@@ -75,8 +76,36 @@ lvim.builtin.telescope.defaults.mappings = {
   },
 }
 
+
+-- Helper Functions
+function GetVisualSelection()
+  local start_pos = vim.api.nvim_buf_get_mark(0, '<')
+  local end_pos = vim.api.nvim_buf_get_mark(0, '>')
+  local lines = vim.fn.getline(start_pos[1], end_pos[1])
+  -- add when only select in 1 line
+  local plusEnd = 0
+  local plusStart = 1
+  if #lines == 0 then
+    return ''
+  elseif #lines == 1 then
+    plusEnd = 1
+    plusStart = 1
+  end
+  lines[#lines] = string.sub(lines[#lines], 0, end_pos[2] + plusEnd)
+  lines[1] = string.sub(lines[1], start_pos[2] + plusStart, string.len(lines[1]))
+  local query = table.concat(lines, '')
+  return query
+end
+
+-- Helper Functions
+function LocalSearchOnVisual()
+  VisualSelection = GetVisualSelection()
+  vim.api.nvim_command("/" .. VisualSelection)
+end
+
 -- Use which-key to add extra bindings with the leader-key prefix
 lvim.builtin.which_key.vmappings["s"] = { "<esc><cmd>lua require('spectre').open_visual()<CR>", "Search Word" }
+lvim.builtin.which_key.vmappings["d"] = { "<esc><cmd>lua LocalSearchOnVisual()<CR>", "Search Word" }
 lvim.builtin.which_key.mappings["P"] = { "<cmd>Telescope projects<CR>", "Projects" }
 lvim.builtin.which_key.mappings["q"] = { nil }
 lvim.builtin.which_key.mappings["Q"] = { "<cmd>lua require('lvim.utils.functions').smart_quit()<CR>", "Quit" }
@@ -97,6 +126,20 @@ lvim.builtin.which_key.mappings["t"] = {
   l = { "<cmd>Trouble loclist<cr>", "LocationList" },
   w = { "<cmd>Trouble workspace_diagnostics<cr>", "Workspace Diagnostics" },
 }
+lvim.builtin.which_key.mappings["D"] = {
+  name = "Run DAP UI",
+  b = { "<cmd>lua require'dap'.toggle_breakpoint()<cr>", "Breakpoint" },
+  c = { "<cmd>lua require'dap'.continue()<cr>", "Continue" },
+  i = { "<cmd>lua require'dap'.step_into()<cr>", "Into" },
+  o = { "<cmd>lua require'dap'.step_over()<cr>", "Over" },
+  O = { "<cmd>lua require'dap'.step_out()<cr>", "Out" },
+  r = { "<cmd>lua require'dap'.repl.toggle()<cr>", "Repl" },
+  l = { "<cmd>lua require'dap'.run_last()<cr>", "Last" },
+  u = { "<cmd>lua require'dapui'.toggle()<cr>", "UI" },
+  x = { "<cmd>lua require'dap'.terminate()<cr>", "Exit" },
+}
+
+
 
 -- TODO: User Config for predefined plugins
 -- After changing plugin config exit and reopen LunarVim, Run :PackerInstall :PackerCompile
@@ -104,6 +147,7 @@ lvim.builtin.alpha.active = true
 lvim.builtin.alpha.mode = "dashboard"
 lvim.builtin.notify.active = true
 lvim.builtin.terminal.active = true
+lvim.builtin.dap.active = true
 lvim.builtin.terminal.shell = "/usr/bin/fish"
 lvim.builtin.nvimtree.setup.view.side = "left"
 lvim.builtin.nvimtree.setup.renderer.icons.show.git = false
@@ -243,6 +287,9 @@ lvim.plugins = {
     "fatih/vim-go"
   },
   {
+    "leoluz/nvim-dap-go",
+  },
+  {
     "phaazon/hop.nvim",
     event = "BufRead",
     config = function()
@@ -261,6 +308,8 @@ lvim.plugins = {
       }
     end
   },
+  { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } },
+  { "theHamsta/nvim-dap-virtual-text", requires = { "mfussenegger/nvim-dap" } },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -286,3 +335,21 @@ vim.api.nvim_create_autocmd("BufEnter", {
 -- })
 
 vim.o.guifont = "Fira Code:h10"
+
+-- DAP --
+-- For go
+local dap_ok, dapgo = pcall(require, "dap-go")
+if not dap_ok then
+  return
+end
+
+dapgo.setup()
+
+-- For UI
+local dap_ok, dapui = pcall(require, "dapui")
+if not dap_ok then
+  return
+end
+
+dapui.setup()
+-- END DAP --
