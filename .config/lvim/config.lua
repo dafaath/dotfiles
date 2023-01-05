@@ -194,7 +194,7 @@ lvim.builtin.treesitter.highlight.enabled = true
 
 -- ---configure a server manually. !!Requires `:LvimCacheReset` to take effect!!
 -- ---see the full default list `:lua print(vim.inspect(lvim.lsp.automatic_configuration.skipped_servers))`
-vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd", "html" })
+vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd", "html", "bashls" })
 lvim.lsp.null_ls.setup = {
   debug = true,
 }
@@ -205,11 +205,13 @@ local opts = { filetypes = { "html", "htmldjango" } }
 require('lvim.lsp.manager').setup("html", opts)
 
 
-
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.offsetEncoding = { "utf-16" }
 local opts = { capabilities = capabilities }
 require("lvim.lsp.manager").setup("clangd", opts)
+
+local opts = { filetypes = { "*.sh", "*.bash", "*.zsh" } }
+require("lvim.lsp.manager").setup("bashls", opts)
 
 -- ---remove a server from the skipped list, e.g. eslint, or emmet_ls. !!Requires `:LvimCacheReset` to take effect!!
 -- ---`:LvimInfo` lists which server(s) are skipped for the current filetype
@@ -239,11 +241,11 @@ formatters.setup {
 -- -- set additional linters
 local linters = require "lvim.lsp.null-ls.linters"
 linters.setup {
-  {
-    -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-    command = "shellcheck",
-    extra_args = { "--severity", "warning" },
-  },
+  -- {
+  --   -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+  --   command = "shellcheck",
+  --   extra_args = { "--severity", "warning" },
+  -- },
   {
     command = "codespell",
   },
@@ -310,6 +312,20 @@ lvim.plugins = {
   },
   { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } },
   { "theHamsta/nvim-dap-virtual-text", requires = { "mfussenegger/nvim-dap" } },
+  {
+    "tpope/vim-surround",
+
+    -- make sure to change the value of `timeoutlen` if it's not triggering correctly, see https://github.com/tpope/vim-surround/issues/117
+    -- setup = function()
+    --  vim.o.timeoutlen = 500
+    -- end
+  },
+  {
+    "windwp/nvim-ts-autotag",
+    config = function()
+      require("nvim-ts-autotag").setup()
+    end,
+  },
 }
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
@@ -318,7 +334,14 @@ lvim.autocommands = {
     "VimEnter", {
       command = "LvimReload",
     },
-  }
+  },
+  {
+    "BufEnter", -- see `:h autocmd-events`
+    { -- this table is passed verbatim as `opts` to `nvim_create_autocmd`
+      pattern = { "*.env" }, -- see `:h autocmd-events`
+      command = "set filetype=env",
+    }
+  },
 }
 
 vim.api.nvim_create_autocmd("BufEnter", {
@@ -326,13 +349,13 @@ vim.api.nvim_create_autocmd("BufEnter", {
   -- enable wrap mode for json files only
   command = "set filetype=html",
 })
--- vim.api.nvim_create_autocmd("FileType", {
---   pattern = "zsh",
---   callback = function()
---     -- let treesitter use bash highlight for zsh files as well
---     require("nvim-treesitter.highlight").attach(0, "bash")
---   end,
--- })
+vim.api.nvim_create_autocmd("FileType", {
+  pattern = "env",
+  callback = function()
+    -- let treesitter use bash highlight for env files as well
+    require("nvim-treesitter.highlight").attach(0, "bash")
+  end,
+})
 
 vim.o.guifont = "Fira Code:h10"
 
