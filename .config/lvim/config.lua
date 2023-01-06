@@ -337,10 +337,14 @@ lvim.plugins = {
     event = { "VimEnter" },
     config = function()
       vim.defer_fn(function()
-        require("copilot").setup {
-          plugin_manager_path = get_runtime_dir() .. "/site/pack/packer",
-        }
-      end, 100)
+        require('copilot').setup({
+          suggestion = {
+            enabled = true,
+            auto_trigger = true,
+            debounce = 75,
+          },
+        })
+      end, 200)
     end,
   },
 
