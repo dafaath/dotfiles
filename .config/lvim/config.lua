@@ -260,6 +260,10 @@ lvim.plugins = {
       require("spectre").setup()
     end,
   },
+  {
+    "EdenEast/nightfox.nvim",
+  },
+
   { 'CRAG666/code_runner.nvim', requires = 'nvim-lua/plenary.nvim' },
   {
     "folke/persistence.nvim",
