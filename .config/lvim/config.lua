@@ -247,6 +247,11 @@ linters.setup {
   --   extra_args = { "--severity", "warning" },
   -- },
   {
+    -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
+    command = "jsonls",
+    filetypes = { "json" }
+  },
+  {
     command = "codespell",
   },
 }
