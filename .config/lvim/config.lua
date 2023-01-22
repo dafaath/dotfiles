@@ -198,6 +198,9 @@ vim.list_extend(lvim.lsp.automatic_configuration.skipped_servers, { "clangd", "h
 lvim.lsp.null_ls.setup = {
   debug = true,
 }
+
+require("lvim.lsp.manager").setup("vuels")
+
 --Enable (broadcasting) snippet capability for completion
 local capabilities = vim.lsp.protocol.make_client_capabilities()
 capabilities.textDocument.completion.completionItem.snippetSupport = true
@@ -235,7 +238,7 @@ formatters.setup {
   { command = "black", filetypes = { "python" } },
   { command = "isort", filetypes = { "python" } },
   { command = "djhtml", filetypes = { "htmldjango" } },
-  { command = "prettier", filetypes = { "yaml" } },
+  { command = "prettier", filetypes = { "yaml", "vue" } },
 }
 
 -- -- set additional linters
