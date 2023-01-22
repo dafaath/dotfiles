@@ -248,7 +248,7 @@ linters.setup {
   -- },
   {
     -- each linter accepts a list of options identical to https://github.com/jose-elias-alvarez/null-ls.nvim/blob/main/doc/BUILTINS.md#Configuration
-    command = "jsonls",
+    command = "jsonlint",
     filetypes = { "json" }
   },
   {
