@@ -11,4 +11,12 @@
 !.config/fish/
 !.config/nvim/
 
+!/.config/Code
+.config/Code/*
+!/.config/Code/User/
+.config/Code/User/*
+!/.config/Code/User/keybindings.json
+!/.config/Code/User/settings.json
+!/.config/Code/User/snippets/
+
 .Rproj.user
