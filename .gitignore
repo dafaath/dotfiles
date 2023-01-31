@@ -9,5 +9,6 @@
 .config/*
 !.config/lvim/
 !.config/fish/
+!.config/nvim/
 
 .Rproj.user
