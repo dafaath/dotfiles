@@ -1001,5 +1001,6 @@
     "editor.cursorBlinking": "phase",
     "[vue]": {
         "editor.defaultFormatter": "octref.vetur"
-    }
+    },
+    "git.confirmSync": false
 }
