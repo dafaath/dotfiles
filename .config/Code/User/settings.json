@@ -981,7 +981,6 @@
     "C_Cpp.default.compilerPath": "/usr/bin/g++",
     "settingsSync.keybindingsPerPlatform": false,
     "editor.stickyScroll.enabled": true,
-    "window.zoomLevel": 1,
     "go.addTags": {
         "tags": "json,validate:required",
         "options": "",
@@ -1000,7 +999,6 @@
     "editor.inlineSuggest.enabled": true,
     "editor.cursorStyle": "underline",
     "editor.cursorBlinking": "phase",
-    "editor.minimap.enabled": false,
     "[vue]": {
         "editor.defaultFormatter": "octref.vetur"
     }
