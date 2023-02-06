@@ -896,7 +896,7 @@
     },
     "vscode-neovim.neovimExecutablePaths.linux": "/usr/bin/nvim",
     "vscode-neovim.neovimInitVimPaths.linux": "$HOME/.config/nvim/init.vim",
-    "editor.cursorSmoothCaretAnimation": true,
+    "editor.cursorSmoothCaretAnimation": "on",
     "editor.parameterHints.enabled": false,
     "problems.showCurrentInStatus": true,
     "git.autofetch": true,
