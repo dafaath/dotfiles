@@ -688,7 +688,8 @@
         "editor.defaultFormatter": "ms-vscode.cpptools"
     },
     "[python]": {
-        "editor.defaultFormatter": "ms-python.python"
+        "editor.defaultFormatter": "ms-python.python",
+        "editor.formatOnType": true
     },
     "[css]": {
         "editor.defaultFormatter": "aeschli.vscode-css-formatter"
@@ -1002,5 +1003,12 @@
     "[vue]": {
         "editor.defaultFormatter": "octref.vetur"
     },
-    "git.confirmSync": false
+    "git.confirmSync": false,
+    "python.analysis.autoImportCompletions": true,
+    "python.analysis.autoImportUserSymbols": true,
+    "python.analysis.completeFunctionParens": true,
+    "python.analysis.inlayHints.functionReturnTypes": true,
+    "python.analysis.inlayHints.variableTypes": true,
+    "python.analysis.typeCheckingMode": "basic",
+    "python.analysis.diagnosticMode": "workspace"
 }
