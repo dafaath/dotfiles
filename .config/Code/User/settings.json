@@ -864,7 +864,6 @@
         "editor.defaultFormatter": "rvest.vs-code-prettier-eslint"
     },
     "typescript.updateImportsOnFileMove.enabled": "always",
-    "javascript.suggest.paths": false,
     "typescript.suggest.paths": false,
     "bracket-pair-colorizer-2.depreciation-notice": false,
     "vim.useSystemClipboard": true,
@@ -1008,5 +1007,14 @@
     "python.analysis.autoImportUserSymbols": true,
     "python.analysis.completeFunctionParens": true,
     "python.analysis.typeCheckingMode": "basic",
-    "python.analysis.diagnosticMode": "workspace"
+    "python.analysis.diagnosticMode": "workspace",
+    "javascript.preferences.importModuleSpecifier": "non-relative",
+    "javascript.referencesCodeLens.enabled": true,
+    "javascript.referencesCodeLens.showOnAllFunctions": true,
+    "javascript.suggest.completeFunctionCalls": true,
+    "js/ts.implicitProjectConfig.checkJs": true,
+    "js/ts.implicitProjectConfig.experimentalDecorators": true,
+    "[handlebars]": {
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+    }
 }
