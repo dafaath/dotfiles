@@ -917,6 +917,7 @@
     ],
     "cSpell.userWords": [
         "dafaath",
+        "datas",
         "fastapi",
         "gorm",
         "imread",
@@ -1017,4 +1018,5 @@
     "[handlebars]": {
         "editor.defaultFormatter": "esbenp.prettier-vscode"
     },
+    "git.openRepositoryInParentFolders": "always",
 }
