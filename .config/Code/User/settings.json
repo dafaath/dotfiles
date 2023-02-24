@@ -1020,4 +1020,7 @@
     },
     "git.openRepositoryInParentFolders": "always",
     "terminal.external.linuxExec": "alacritty",
+    "[properties]": {
+        "editor.defaultFormatter": "foxundermoon.shell-format"
+    },
 }
