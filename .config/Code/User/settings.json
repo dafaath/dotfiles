@@ -325,16 +325,18 @@
                     "command": "git.checkout"
                 },
                 {
+                    "key": "g",
+                    "name": "Lazygit",
+                    "command": "workbench.action.terminal.sendSequence",
+                    "args": {
+                        "text": "gnome-terminal --window --full-screen -- fish -c lazygit \u000D"
+                    }
+                },
+                {
                     "key": "c",
                     "name": "Commit",
                     "type": "command",
                     "command": "git.commit"
-                },
-                {
-                    "key": "d",
-                    "name": "Delete Branch",
-                    "type": "command",
-                    "command": "git.deleteBranch"
                 },
                 {
                     "key": "f",
@@ -946,7 +948,7 @@
     "r.plot.useHttpgd": true,
     "r.rterm.linux": "/home/dafaath/.local/bin/radian",
     "[html]": {
-        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        "editor.defaultFormatter": "vscode.html-language-features"
     },
     "terminal.integrated.defaultProfile.linux": "fish",
     "cSpell.language": "en,en-GB,en-US",
