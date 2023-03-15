@@ -682,7 +682,7 @@
     "code-runner.runInTerminal": true,
     "editor.lineHeight": 0,
     "editor.fontSize": 20,
-    "workbench.iconTheme": "material-icon-theme",
+    "workbench.iconTheme": "eq-material-theme-icons-light",
     "[cpp]": {
         "editor.defaultFormatter": "ms-vscode.cpptools"
     },
