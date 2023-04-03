@@ -13,11 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 ~/Project/Startup-Campus/web-backend/.platform/nginx/conf.d/proxy.conf
-badd +1 ~/Project/Startup-Campus/web-backend/.platform/00_myconf.config
+badd +4 ~/Project/Startup-Campus/web-backend/release.sh
 argglobal
 %argdel
 $argadd .
+edit ~/Project/Startup-Campus/web-backend/release.sh
+argglobal
+let s:l = 4 - ((3 * winheight(0) + 15) / 30)
+if s:l < 1 | let s:l = 1 | endif
+keepjumps exe s:l
+normal! zt
+keepjumps 4
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
