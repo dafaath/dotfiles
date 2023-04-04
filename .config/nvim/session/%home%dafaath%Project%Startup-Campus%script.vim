@@ -13,25 +13,25 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +67 ~/Project/Startup-Campus/script/create_email_and_password.py
+badd +3 ~/Project/Startup-Campus/script/create_email_and_password.py
+badd +36 ~/Project/Startup-Campus/script/export_firebase_db.js
+badd +1 ~/Project/Startup-Campus/script/output.json
+badd +151 ~/Project/Startup-Campus/script/artificial-intelligence.json
+badd +197 ~/Project/Startup-Campus/script/data-science.json
+badd +237 ~/Project/Startup-Campus/script/the-founder.json
+badd +167 ~/Project/Startup-Campus/script/uiux-design.json
 argglobal
 %argdel
 $argadd .
-edit ~/Project/Startup-Campus/script/create_email_and_password.py
-wincmd t
-let s:save_winminheight = &winminheight
-let s:save_winminwidth = &winminwidth
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
+edit ~/Project/Startup-Campus/script/the-founder.json
 argglobal
-let s:l = 67 - ((8 * winheight(0) + 14) / 29)
+balt ~/Project/Startup-Campus/script/artificial-intelligence.json
+let s:l = 16 - ((15 * winheight(0) + 14) / 29)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 67
-normal! 023|
+keepjumps 16
+normal! 027|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -39,15 +39,12 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
-let &winminheight = s:save_winminheight
-let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
