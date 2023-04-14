@@ -933,7 +933,8 @@
         "twibbon"
     ],
     "errorLens.excludeBySource": [
-        "cSpell"
+        "cSpell",
+        "Pylance(reportGeneralTypeIssues)"
     ],
     "[go]": {
         "editor.defaultFormatter": "golang.go",
