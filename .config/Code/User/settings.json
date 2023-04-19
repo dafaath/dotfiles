@@ -1028,5 +1028,4 @@
     "[properties]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
-    "window.zoomLevel": -1,
 }

@@ -13,18 +13,20 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +0 cmd/main.go
+badd +42 internal/entities/user.entity.go
+badd +116 internal/handlers/user.handler.go
 argglobal
 %argdel
 $argadd .
-edit cmd/main.go
+edit internal/handlers/user.handler.go
 argglobal
-let s:l = 10 - ((9 * winheight(0) + 15) / 30)
+balt internal/entities/user.entity.go
+let s:l = 116 - ((13 * winheight(0) + 14) / 29)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 10
-normal! 0
+keepjumps 116
+normal! 03|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -38,7 +40,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
