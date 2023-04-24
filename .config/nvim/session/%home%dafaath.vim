@@ -13,17 +13,17 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +148 .config/lvim/config.lua
+badd +51 ~/.config/lvim/config.lua
 argglobal
 %argdel
 $argadd .
-edit .config/lvim/config.lua
+edit ~/.config/lvim/config.lua
 argglobal
-let s:l = 146 - ((12 * winheight(0) + 15) / 30)
+let s:l = 30 - ((12 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 146
+keepjumps 30
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
@@ -38,6 +38,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

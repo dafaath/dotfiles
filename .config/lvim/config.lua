@@ -9,7 +9,7 @@ an executable
 
 -- general lvim.log.level = "warn"
 lvim.format_on_save = true
-lvim.colorscheme = "tokyonight-storm"
+lvim.colorscheme = "carbonfox"
 -- to disable icons and use a minimalist setup, uncomment the following
 
 -- keymappings [view all the defaults by pressing <leader>Lk]
