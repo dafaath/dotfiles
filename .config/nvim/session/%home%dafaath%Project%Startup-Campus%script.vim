@@ -13,13 +13,14 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 ~/Project/Startup-Campus/script/output.json
-badd +48 ~/Project/Startup-Campus/script/generate-voucher/main.py
-badd +109 ~/Project/Startup-Campus/script/upload-certificate/upload_certificate.py
+badd +39 combine-pdf/label.py
+badd +1 ~/Project/Startup-Campus/script/upload-certificate/update_certificate.py
+badd +128 ~/Project/Startup-Campus/script/upload-certificate/upload_certificate.py
+badd +17 ~/Project/Startup-Campus/script/upload-certificate/rename_certificate.py
 argglobal
 %argdel
 $argadd .
-edit ~/Project/Startup-Campus/script/generate-voucher/main.py
+edit ~/Project/Startup-Campus/script/upload-certificate/upload_certificate.py
 let s:save_splitbelow = &splitbelow
 let s:save_splitright = &splitright
 set splitbelow splitright
@@ -33,13 +34,13 @@ set winheight=1
 set winminwidth=0
 set winwidth=1
 argglobal
-balt ~/Project/Startup-Campus/script/upload-certificate/upload_certificate.py
-let s:l = 48 - ((10 * winheight(0) + 10) / 21)
+balt ~/Project/Startup-Campus/script/upload-certificate/rename_certificate.py
+let s:l = 128 - ((20 * winheight(0) + 10) / 21)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 48
-normal! 018|
+keepjumps 128
+normal! 05|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -55,7 +56,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
