@@ -13,34 +13,26 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +39 combine-pdf/label.py
-badd +1 ~/Project/Startup-Campus/script/upload-certificate/update_certificate.py
-badd +128 ~/Project/Startup-Campus/script/upload-certificate/upload_certificate.py
-badd +17 ~/Project/Startup-Campus/script/upload-certificate/rename_certificate.py
+badd +83 ~/Project/Startup-Campus/script/send_email/main.py
+badd +1 ~/Project/Startup-Campus/script/send_email/mail.py
+badd +2 ~/Project/Startup-Campus/script/send_email/.env
 argglobal
 %argdel
 $argadd .
-edit ~/Project/Startup-Campus/script/upload-certificate/upload_certificate.py
-let s:save_splitbelow = &splitbelow
-let s:save_splitright = &splitright
-set splitbelow splitright
-let &splitbelow = s:save_splitbelow
-let &splitright = s:save_splitright
-wincmd t
-let s:save_winminheight = &winminheight
-let s:save_winminwidth = &winminwidth
-set winminheight=0
-set winheight=1
-set winminwidth=0
-set winwidth=1
+edit ~/Project/Startup-Campus/script/send_email/mail.py
 argglobal
-balt ~/Project/Startup-Campus/script/upload-certificate/rename_certificate.py
-let s:l = 128 - ((20 * winheight(0) + 10) / 21)
+balt ~/Project/Startup-Campus/script/send_email/main.py
+let s:l = 273 - ((19 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 128
-normal! 05|
+keepjumps 273
+let s:c = 69 - ((33 * winwidth(0) + 80) / 160)
+if s:c > 0
+  exe 'normal! ' . s:c . '|zs' . 69 . '|'
+else
+  normal! 069|
+endif
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -48,8 +40,6 @@ endif
 unlet! s:wipebuf
 set winheight=1 winwidth=20
 let &shortmess = s:shortmess_save
-let &winminheight = s:save_winminheight
-let &winminwidth = s:save_winminwidth
 let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
