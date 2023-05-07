@@ -13,26 +13,21 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +83 ~/Project/Startup-Campus/script/send_email/main.py
+badd +3 send_email/data.csv
 badd +1 ~/Project/Startup-Campus/script/send_email/mail.py
-badd +2 ~/Project/Startup-Campus/script/send_email/.env
+badd +38 ~/Project/Startup-Campus/script/send_email/main.py
 argglobal
 %argdel
 $argadd .
-edit ~/Project/Startup-Campus/script/send_email/mail.py
+edit send_email/data.csv
 argglobal
-balt ~/Project/Startup-Campus/script/send_email/main.py
-let s:l = 273 - ((19 * winheight(0) + 15) / 31)
+balt ~/Project/Startup-Campus/script/send_email/mail.py
+let s:l = 3 - ((2 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 273
-let s:c = 69 - ((33 * winwidth(0) + 80) / 160)
-if s:c > 0
-  exe 'normal! ' . s:c . '|zs' . 69 . '|'
-else
-  normal! 069|
-endif
+keepjumps 3
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -46,6 +41,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
