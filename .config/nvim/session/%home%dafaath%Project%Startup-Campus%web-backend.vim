@@ -13,17 +13,22 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +4 ~/Project/Startup-Campus/web-backend/release.sh
+badd +15 app/repositories/certificate.py
+badd +13 ~/Project/Startup-Campus/web-backend/app/entities/certificate.py
+badd +0 ~/Project/Startup-Campus/web-backend/app/routes/certificate.py
+badd +1 ~/Project/Startup-Campus/web-backend/app/utils/directory.py
+badd +1 app/dependencies/aws.py
 argglobal
 %argdel
 $argadd .
-edit ~/Project/Startup-Campus/web-backend/release.sh
+edit ~/Project/Startup-Campus/web-backend/app/routes/certificate.py
 argglobal
-let s:l = 4 - ((3 * winheight(0) + 15) / 30)
+balt ~/Project/Startup-Campus/web-backend/app/utils/directory.py
+let s:l = 150 - ((13 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 4
+keepjumps 150
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
@@ -38,7 +43,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

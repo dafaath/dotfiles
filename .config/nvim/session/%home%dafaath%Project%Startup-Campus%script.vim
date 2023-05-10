@@ -13,19 +13,17 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +269 send_email/mail.py
-badd +0 ~/Project/Startup-Campus/script/send_email/main.py
+badd +17 send_email/data.csv
 argglobal
 %argdel
 $argadd .
-edit ~/Project/Startup-Campus/script/send_email/main.py
+edit send_email/data.csv
 argglobal
-balt send_email/mail.py
-let s:l = 30 - ((8 * winheight(0) + 15) / 31)
+let s:l = 20 - ((19 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 30
+keepjumps 20
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
