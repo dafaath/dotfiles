@@ -13,22 +13,20 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +15 app/repositories/certificate.py
-badd +13 ~/Project/Startup-Campus/web-backend/app/entities/certificate.py
-badd +0 ~/Project/Startup-Campus/web-backend/app/routes/certificate.py
-badd +1 ~/Project/Startup-Campus/web-backend/app/utils/directory.py
-badd +1 app/dependencies/aws.py
+badd +141 app/repositories/certificate.py
+badd +21 ~/Project/Startup-Campus/web-backend/app/entities/certificate.py
+badd +0 ~/Project/Startup-Campus/web-backend/app/utils/schema.py
 argglobal
 %argdel
 $argadd .
-edit ~/Project/Startup-Campus/web-backend/app/routes/certificate.py
+edit ~/Project/Startup-Campus/web-backend/app/utils/schema.py
 argglobal
-balt ~/Project/Startup-Campus/web-backend/app/utils/directory.py
-let s:l = 150 - ((13 * winheight(0) + 16) / 32)
+balt ~/Project/Startup-Campus/web-backend/app/entities/certificate.py
+let s:l = 8 - ((7 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 150
+keepjumps 8
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
