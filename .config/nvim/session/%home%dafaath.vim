@@ -13,20 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +21 Project/Startup-Campus/certificate-create/main.py
-badd +4 ~/Project/Startup-Campus/certificate-create/msib_certificate.py
-badd +15 ~/Project/Startup-Campus/certificate-create/entities.py
+badd +39 Project/Startup-Campus/frontend/components/trackPage/Main.js
+badd +6 .config/lvim/config.lua
 argglobal
 %argdel
-$argadd .
-edit ~/Project/Startup-Campus/certificate-create/msib_certificate.py
+edit .config/lvim/config.lua
 argglobal
-balt ~/Project/Startup-Campus/certificate-create/entities.py
-let s:l = 4 - ((3 * winheight(0) + 15) / 31)
+balt Project/Startup-Campus/frontend/components/trackPage/Main.js
+let s:l = 6 - ((5 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 4
+keepjumps 6
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
@@ -41,6 +39,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

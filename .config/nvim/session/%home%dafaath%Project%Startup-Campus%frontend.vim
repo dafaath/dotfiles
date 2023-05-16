@@ -13,17 +13,17 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +8 ~/Project/Startup-Campus/frontend/pages/set-token.js
+badd +19 components/RegistPage/AfterRegister.js
 argglobal
 %argdel
 $argadd .
-edit ~/Project/Startup-Campus/frontend/pages/set-token.js
+edit components/RegistPage/AfterRegister.js
 argglobal
-let s:l = 8 - ((7 * winheight(0) + 14) / 29)
+let s:l = 20 - ((19 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 8
+keepjumps 20
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
@@ -38,6 +38,7 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
+nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

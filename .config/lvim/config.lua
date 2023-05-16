@@ -1,21 +1,13 @@
 --[[
-lvim is the global options object
-Linters should be
-filled in as strings with either
-a global executable or a path to
-an executable
+Config by dafaath 
+github.com/dafaath/dotfiles 
 ]]
--- THESE ARE EXAMPLE CONFIGS FEEL FREE TO CHANGE TO WHATEVER YOU WANT
 
 -- general lvim.log.level = "warn"
 lvim.format_on_save = true
 lvim.colorscheme = "carbonfox"
--- to disable icons and use a minimalist setup, uncomment the following
 
--- keymappings [view all the defaults by pressing <leader>Lk]
 lvim.leader = "space"
-
--- add your own keymapping
 
 lvim.keys.normal_mode["<C-s>"] = ":w<cr>"
 lvim.keys.normal_mode["<C-l>"] = ":BufferLineCycleNext<CR>"
@@ -53,10 +45,6 @@ lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs + 1] = { vim.o.shell, "
   20 }
 lvim.builtin.terminal.execs[#lvim.builtin.terminal.execs + 1] = { vim.o.shell, "<M-3>", "Float Terminal", "float", nil }
 
--- unmap a default keymapping
--- vim.keymap.del("n", "<C-Up>")
--- override a default keymapping
--- lvim.keys.normal_mode["<C-q>"] = ":q<cr>" -- or vim.keymap.set("n", "<C-q>", ":q<cr>" )
 
 -- Change Telescope navigation to use j and k for navigation and n and p for history in both input and normal mode.
 -- we use protected-mode (pcall) just in case the plugin wasn't loaded yet.
@@ -270,12 +258,10 @@ lvim.plugins = {
   {
     "EdenEast/nightfox.nvim",
   },
-
-  { 'CRAG666/code_runner.nvim', requires = 'nvim-lua/plenary.nvim' },
+  { 'CRAG666/code_runner.nvim', dependencies = {'nvim-lua/plenary.nvim'} },
   {
     "folke/persistence.nvim",
     event = "BufReadPre", -- this will only start session saving when an actual file was opened
-    module = "persistence",
     config = function()
       require("persistence").setup {
         dir = vim.fn.expand(vim.fn.stdpath "config" .. "/session/"),
@@ -285,7 +271,7 @@ lvim.plugins = {
   },
   {
     "iamcco/markdown-preview.nvim",
-    run = "cd app && npm install",
+    build = "cd app && npm install",
     ft = "markdown",
     config = function()
       vim.g.mkdp_auto_start = 1
@@ -321,8 +307,8 @@ lvim.plugins = {
       }
     end
   },
-  { "rcarriga/nvim-dap-ui", requires = { "mfussenegger/nvim-dap" } },
-  { "theHamsta/nvim-dap-virtual-text", requires = { "mfussenegger/nvim-dap" } },
+  { "rcarriga/nvim-dap-ui", dependencies = { "mfussenegger/nvim-dap" } },
+  { "theHamsta/nvim-dap-virtual-text", dependencies = { "mfussenegger/nvim-dap" } },
   {
     "tpope/vim-surround",
 
@@ -360,7 +346,7 @@ lvim.plugins = {
   },
 
   { "zbirenbaum/copilot-cmp",
-    after = { "copilot.lua", "nvim-cmp" },
+    dependencies = { "copilot.lua", "nvim-cmp" },
   },
 }
 
