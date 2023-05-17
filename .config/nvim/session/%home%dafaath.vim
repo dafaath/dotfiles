@@ -13,19 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +39 Project/Startup-Campus/frontend/components/trackPage/Main.js
-badd +6 .config/lvim/config.lua
+badd +1 Downloads/drive-download-20230430T114944Z-001/test.py
 argglobal
 %argdel
-edit .config/lvim/config.lua
+$argadd Downloads/drive-download-20230430T114944Z-001/test.py
+edit Downloads/drive-download-20230430T114944Z-001/test.py
 argglobal
-balt Project/Startup-Campus/frontend/components/trackPage/Main.js
-let s:l = 6 - ((5 * winheight(0) + 16) / 32)
+let s:l = 4 - ((3 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 6
-normal! 0
+keepjumps 4
+normal! 043|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
