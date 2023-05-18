@@ -13,18 +13,20 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +8 group_certificate/handle_certificate.py
+badd +21 combine-pdf/rename.py
+badd +2 ~/Project/Startup-Campus/script/combine-pdf/label.py
 argglobal
 %argdel
-$argadd group_certificate/handle_certificate.py
-edit group_certificate/handle_certificate.py
+$argadd .
+edit combine-pdf/rename.py
 argglobal
-let s:l = 8 - ((7 * winheight(0) + 16) / 33)
+balt ~/Project/Startup-Campus/script/combine-pdf/label.py
+let s:l = 21 - ((20 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 8
-normal! 021|
+keepjumps 21
+normal! 030|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf

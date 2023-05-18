@@ -13,21 +13,20 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +35 ~/Project/Startup-Campus/certificate-create/entities.py
-badd +355 certificate_create.py
-badd +47 main.py
+badd +37 entities.py
+badd +73 main.py
 argglobal
 %argdel
 $argadd .
-edit certificate_create.py
+edit main.py
 argglobal
-balt main.py
-let s:l = 355 - ((21 * winheight(0) + 15) / 31)
+balt entities.py
+let s:l = 74 - ((22 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 355
-normal! 045|
+keepjumps 74
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -39,6 +38,11 @@ let s:sx = expand("<sfile>:p:r")."x.vim"
 if filereadable(s:sx)
   exe "source " . fnameescape(s:sx)
 endif
+let &g:so = s:so_save | let &g:siso = s:siso_save
+set hlsearch
+doautoall SessionLoadPost
+unlet SessionLoad
+" vim: set ft=vim :
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
 doautoall SessionLoadPost
