@@ -13,20 +13,23 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +21 combine-pdf/rename.py
-badd +2 ~/Project/Startup-Campus/script/combine-pdf/label.py
+badd +1 ~/Project/Startup-Campus/script/lms/assign_user_to_voucher.py
+badd +40 ~/Project/Startup-Campus/script/lms/create_lms_account.py
+badd +1 ~/Project/Startup-Campus/script/lms/user_voucher/dummy_account_voucher.json
+badd +30 ~/Project/Startup-Campus/script/lms/redeem_user_voucher.py
+badd +37 ~/Project/Startup-Campus/script/lms/complete_user_lms.py
 argglobal
 %argdel
 $argadd .
-edit combine-pdf/rename.py
+edit ~/Project/Startup-Campus/script/lms/assign_user_to_voucher.py
 argglobal
-balt ~/Project/Startup-Campus/script/combine-pdf/label.py
-let s:l = 21 - ((20 * winheight(0) + 15) / 31)
+balt ~/Project/Startup-Campus/script/lms/create_lms_account.py
+let s:l = 11 - ((10 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 21
-normal! 030|
+keepjumps 11
+normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
