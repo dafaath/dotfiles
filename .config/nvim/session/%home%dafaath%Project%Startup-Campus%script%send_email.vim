@@ -3,7 +3,7 @@ let s:so_save = &g:so | let s:siso_save = &g:siso | setg so=0 siso=0 | setl so=-
 let v:this_session=expand("<sfile>:p")
 silent only
 silent tabonly
-cd ~/Project/Startup-Campus/script
+cd ~/Project/Startup-Campus/script/send_email
 if expand('%') == '' && !&modified && line('$') <= 1 && getline(1) == ''
   let s:wipebuf = bufnr('%')
 endif
@@ -13,19 +13,19 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 ~/Project/Startup-Campus/script/.gitignore
-badd +25 ~/Project/Startup-Campus/script/lms/assign_user_to_voucher.py
+badd +4 dev.py
+badd +1 templates/test.html
 argglobal
 %argdel
 $argadd .
-edit ~/Project/Startup-Campus/script/lms/assign_user_to_voucher.py
+edit dev.py
 argglobal
-balt ~/Project/Startup-Campus/script/.gitignore
-let s:l = 24 - ((20 * winheight(0) + 15) / 31)
+balt templates/test.html
+let s:l = 22 - ((21 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 24
+keepjumps 22
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'

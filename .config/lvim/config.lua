@@ -258,7 +258,7 @@ lvim.plugins = {
   {
     "EdenEast/nightfox.nvim",
   },
-  { 'CRAG666/code_runner.nvim', dependencies = {'nvim-lua/plenary.nvim'} },
+  { 'CRAG666/code_runner.nvim', dependencies = { 'nvim-lua/plenary.nvim' } },
   {
     "folke/persistence.nvim",
     event = "BufReadPre", -- this will only start session saving when an actual file was opened
@@ -296,6 +296,17 @@ lvim.plugins = {
       vim.api.nvim_set_keymap("n", "s", ":HopChar2<cr>", { silent = true })
       vim.api.nvim_set_keymap("n", "S", ":HopWord<cr>", { silent = true })
     end,
+  },
+  {
+    "ray-x/lsp_signature.nvim",
+    event = "BufRead",
+    config = function() require "lsp_signature".on_attach() end,
+  },
+  {
+    "simrat39/symbols-outline.nvim",
+    config = function()
+      require('symbols-outline').setup()
+    end
   },
   {
     "nacro90/numb.nvim",
@@ -344,7 +355,6 @@ lvim.plugins = {
       end, 200)
     end,
   },
-
   { "zbirenbaum/copilot-cmp",
     dependencies = { "copilot.lua", "nvim-cmp" },
   },
@@ -353,6 +363,7 @@ lvim.plugins = {
 -- Can not be placed into the config method of the plugins.
 lvim.builtin.cmp.formatting.source_names["copilot"] = "(Copilot)"
 table.insert(lvim.builtin.cmp.sources, 1, { name = "copilot" })
+
 
 -- Autocommands (https://neovim.io/doc/user/autocmd.html)
 lvim.autocommands = {
