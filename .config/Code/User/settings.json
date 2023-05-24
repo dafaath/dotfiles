@@ -1012,6 +1012,7 @@
     "python.analysis.autoImportCompletions": true,
     "python.analysis.autoImportUserSymbols": true,
     "python.analysis.completeFunctionParens": true,
+    "python.analysis.indexing": true,
     "python.analysis.typeCheckingMode": "basic",
     "python.analysis.diagnosticMode": "workspace",
     "javascript.preferences.importModuleSpecifier": "non-relative",

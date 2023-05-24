@@ -13,20 +13,24 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +1 ~/Project/Startup-Campus/script/.gitignore
-badd +25 ~/Project/Startup-Campus/script/lms/assign_user_to_voucher.py
+badd +75 send_email/templates/certificate.html
+badd +153 ~/Project/Startup-Campus/script/send_email/templates/base/base.html
+badd +51 send_email/main.py
+badd +1 send_email/content.py
+badd +63 send_email/data/batch\ 1.csv
+badd +43 ~/Project/Startup-Campus/script/send_email/sender.py
 argglobal
 %argdel
 $argadd .
-edit ~/Project/Startup-Campus/script/lms/assign_user_to_voucher.py
+edit send_email/main.py
 argglobal
-balt ~/Project/Startup-Campus/script/.gitignore
-let s:l = 24 - ((20 * winheight(0) + 15) / 31)
+balt send_email/content.py
+let s:l = 51 - ((15 * winheight(0) + 15) / 31)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 24
-normal! 0
+keepjumps 51
+normal! 020|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
