@@ -13,18 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +100 ~/Project/Skripsi/Siege-Script/.gitignore
+badd +60 ~/Project/Skripsi/Siege-Script/create_chart.py
 argglobal
 %argdel
 $argadd .
-edit ~/Project/Skripsi/Siege-Script/.gitignore
+edit ~/Project/Skripsi/Siege-Script/create_chart.py
 argglobal
-let s:l = 115 - ((23 * winheight(0) + 16) / 33)
+let s:l = 69 - ((20 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 115
-normal! 011|
+keepjumps 69
+normal! 022|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -38,7 +38,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
