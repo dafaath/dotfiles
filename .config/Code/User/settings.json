@@ -1032,4 +1032,5 @@
     "[dockerfile]": {
         "editor.defaultFormatter": "foxundermoon.shell-format"
     },
+    "vue.codeActions.savingTimeLimit": 2000,
 }

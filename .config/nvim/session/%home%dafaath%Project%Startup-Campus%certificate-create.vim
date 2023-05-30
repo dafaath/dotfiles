@@ -13,23 +13,19 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +14 ~/Project/Startup-Campus/certificate-create/settings.py
-badd +6 ~/Project/Startup-Campus/certificate-create/.env
-badd +67 certificate_create.py
-badd +73 ~/Project/Startup-Campus/certificate-create/certificate_delete.py
-badd +87 main.py
-badd +121 group_certificate.py
+badd +16 ~/Project/Startup-Campus/certificate-create/main.py
+badd +7 ~/Project/Startup-Campus/certificate-create/.env
 argglobal
 %argdel
 $argadd .
-edit main.py
+edit ~/Project/Startup-Campus/certificate-create/main.py
 argglobal
-balt ~/Project/Startup-Campus/certificate-create/certificate_delete.py
-let s:l = 89 - ((19 * winheight(0) + 15) / 31)
+balt ~/Project/Startup-Campus/certificate-create/.env
+let s:l = 121 - ((8 * winheight(0) + 8) / 17)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 89
+keepjumps 121
 normal! 0
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
