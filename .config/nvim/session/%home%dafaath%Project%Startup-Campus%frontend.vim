@@ -13,18 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +19 components/RegistPage/AfterRegister.js
+badd +126 components/SurveyMasaDepan/FormOrangTua.js
 argglobal
 %argdel
 $argadd .
-edit components/RegistPage/AfterRegister.js
+edit components/SurveyMasaDepan/FormOrangTua.js
 argglobal
-let s:l = 20 - ((19 * winheight(0) + 16) / 33)
+let s:l = 122 - ((21 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 20
-normal! 0
+keepjumps 122
+normal! 018|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -38,7 +38,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :

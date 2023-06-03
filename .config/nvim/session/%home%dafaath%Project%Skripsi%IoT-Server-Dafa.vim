@@ -13,13 +13,13 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +80 cmd/main.go
+badd +81 cmd/main.go
 argglobal
 %argdel
 $argadd .
 edit cmd/main.go
 argglobal
-let s:l = 81 - ((16 * winheight(0) + 16) / 32)
+let s:l = 81 - ((16 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
