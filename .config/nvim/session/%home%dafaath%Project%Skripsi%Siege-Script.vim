@@ -13,21 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +43 ~/Project/Skripsi/Siege-Script/get_metric.py
-badd +184 ~/Project/Skripsi/Siege-Script/create_chart.py
-badd +2 ~/Project/Skripsi/Siege-Script/README.md
+badd +180 ~/Project/Skripsi/Siege-Script/create_chart.py
 argglobal
 %argdel
 $argadd .
-edit ~/Project/Skripsi/Siege-Script/README.md
+edit ~/Project/Skripsi/Siege-Script/create_chart.py
 argglobal
-balt ~/Project/Skripsi/Siege-Script/create_chart.py
-let s:l = 2 - ((1 * winheight(0) + 16) / 32)
+let s:l = 180 - ((24 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 2
-normal! 0
+keepjumps 180
+normal! 042|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
