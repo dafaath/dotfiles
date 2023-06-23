@@ -13,18 +13,20 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +81 cmd/main.go
+badd +24 internal/database/database.go
+badd +18 ~/go/pkg/mod/github.com/jackc/pgx/v5@v5.2.0/pgxpool/pool.go
 argglobal
 %argdel
 $argadd .
-edit cmd/main.go
+edit internal/database/database.go
 argglobal
-let s:l = 81 - ((16 * winheight(0) + 16) / 33)
+balt ~/go/pkg/mod/github.com/jackc/pgx/v5@v5.2.0/pgxpool/pool.go
+let s:l = 25 - ((14 * winheight(0) + 16) / 32)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 81
-normal! 0
+keepjumps 25
+normal! 010|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
@@ -38,7 +40,6 @@ if filereadable(s:sx)
 endif
 let &g:so = s:so_save | let &g:siso = s:siso_save
 set hlsearch
-nohlsearch
 doautoall SessionLoadPost
 unlet SessionLoad
 " vim: set ft=vim :
