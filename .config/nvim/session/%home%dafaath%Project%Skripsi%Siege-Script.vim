@@ -13,18 +13,18 @@ if &shortmess =~ 'A'
 else
   set shortmess=aoO
 endif
-badd +180 ~/Project/Skripsi/Siege-Script/create_chart.py
+badd +2592 ~/Project/Skripsi/Siege-Script/old/dafav1.txt
 argglobal
 %argdel
 $argadd .
-edit ~/Project/Skripsi/Siege-Script/create_chart.py
+edit ~/Project/Skripsi/Siege-Script/old/dafav1.txt
 argglobal
-let s:l = 180 - ((24 * winheight(0) + 16) / 33)
+let s:l = 2592 - ((24 * winheight(0) + 16) / 33)
 if s:l < 1 | let s:l = 1 | endif
 keepjumps exe s:l
 normal! zt
-keepjumps 180
-normal! 042|
+keepjumps 2592
+normal! 05|
 tabnext 1
 if exists('s:wipebuf') && len(win_findbuf(s:wipebuf)) == 0 && getbufvar(s:wipebuf, '&buftype') isnot# 'terminal'
   silent exe 'bwipe ' . s:wipebuf
